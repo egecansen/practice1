@@ -14,7 +14,7 @@ public class LandingPage {
     List<WebElement> categories;
 
     public LandingPage(){
-        PageFactory.initElements(Driver.driver, LandingPage.class);
+        PageFactory.initElements(Driver.driver, this);
     }
 
     public void clickCard(String label){

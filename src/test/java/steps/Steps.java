@@ -6,9 +6,10 @@ import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
 import pages.LandingPage;
 
+import java.util.concurrent.TimeUnit;
+
 public class Steps {
 
-    LandingPage landingPage = new LandingPage();
 
     @Before
     public void before() {
@@ -25,8 +26,10 @@ public class Steps {
         Driver.driver.get(url);
     }
 
-    @Given("Click {} card")
-    public void clickCard(String label) {
-        landingPage.clickCard(label);
+    @Given("Wait {} seconds")
+    public void wait(int duration) {
+        try {
+            TimeUnit.SECONDS.sleep(duration);}
+        catch (InterruptedException ignored){}
     }
 }
