@@ -10,7 +10,6 @@ import java.util.concurrent.TimeUnit;
 
 public class Steps {
 
-
     @Before
     public void before() {
         Driver.setup();
