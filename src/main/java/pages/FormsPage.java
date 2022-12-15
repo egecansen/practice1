@@ -25,9 +25,13 @@ public class FormsPage extends Utilities {
 
     @FindBy (css = "[class='react-datepicker__year-select'] option")
     List<WebElement> years;
+
     @FindBy (css = "[class='react-datepicker__year-select']")
     WebElement yearPicker;
 
+    @FindBy (css = ".react-datepicker__month [role='option']")
+    public List<WebElement> days;
+    
     public void clickBox(String gender) {
         genderSelect(gender).click();
     }
@@ -51,21 +55,26 @@ public class FormsPage extends Utilities {
         return practiceForm.findElement(By.id("userNumber"));
     }
 
-    public void dateOfBirth(String day, String month, String yearText) {
+    public void dateOfBirth(String day, String month, String year) {
         scroll(datePicker);
         datePicker.click();
 
-        for (WebElement monthName : months)
-            if (monthName.getText().equals(month))
-                monthName.click();
+        getMonth(month).click();
+        getYear(year).click();
+        getDay(day).click();
+    }
 
-        for (WebElement year : years)
-            if (year.getText().equals(yearText))
-                year.click();
-
-        for (WebElement dayButton : new DatePicker().days)
-            if (dayButton.getText().equals(day))
-                dayButton.click();
+    public WebElement getMonth(String monthName){
+        for (WebElement month : months) if (month.getText().equals(monthName)) return month;
+        throw new RuntimeException("Month not found");
+    }
+    public WebElement getYear(String yearName){
+        for (WebElement year : years) if (year.getText().equals(yearName)) return year;
+        throw new RuntimeException("Year not found");
+    }
+    public WebElement getDay(String dayName){
+        for (WebElement day : days) if (day.getText().equals(dayName)) return day;
+        throw new RuntimeException("Day not found");
     }
 
     public WebElement subject() {
