@@ -4,7 +4,6 @@ import driver.Driver;
 import io.cucumber.java.After;
 import io.cucumber.java.Before;
 import io.cucumber.java.en.Given;
-import pages.LandingPage;
 
 import java.util.concurrent.TimeUnit;
 
